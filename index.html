@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR J200 | Media Studies Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Midnight Theme Variables */
+        :root {
+            --bg-main: #0d1117;
+            --bg-card: #161b22;
+            --border-subtle: #30363d;
+            --text-main: #c9d1d9;
+            --text-heading: #ffffff;
+            --accent-blue: #58a6ff;
+            --accent-purple: #8957e5;
+            --accent-green: #238636;
+            --accent-warning: #d29922;
+            --bg-warning: rgba(210, 153, 34, 0.1);
+        }
+
+        /* Smooth scrolling for anchor links */
+        html { 
+            scroll-behavior: smooth; 
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-main); 
+            background-color: var(--bg-main);
+            margin: 0; 
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Main Content Wrapper */
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px 20px 60px 20px;
+        }
+
+        /* Sticky Navigation Bar */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--accent-blue);
+            color: #000;
+            border-color: var(--accent-blue);
+        }
+
+        .header { text-align: center; margin: 2rem 0; }
+        .header h1 { color: var(--text-heading); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+        .header p { color: var(--accent-blue); font-weight: 600; font-size: 1.1rem; margin-top: 0; }
+
+        /* Unified Card Styling */
+        .card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border-subtle);
+            padding: 30px; 
+            border-radius: 16px; 
+            margin-bottom: 24px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            scroll-margin-top: 90px; 
+        }
+
+        .card h2 { color: var(--text-heading); font-size: 1.4rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin-top: 0; }
+        .card h3 { color: var(--text-heading); font-size: 1.1rem; margin-top: 0; }
+
+        /* Timers */
+        .timer-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+        .timer-card { flex: 1; min-width: 250px; text-align: center; border-top: 4px solid var(--accent-purple); }
+        .timer-card p { color: #8b949e; font-size: 0.9rem; margin-bottom: 20px; }
+        
+        .time-display { display: flex; justify-content: center; gap: 15px; font-size: 1.8rem; font-weight: 800; color: var(--text-heading); }
+        .time-unit { display: flex; flex-direction: column; font-size: 0.8rem; color: #8b949e; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+        /* Daily Task Section */
+        .daily-task { border-left: 4px solid var(--accent-purple); position: relative; overflow: hidden; }
+        .daily-task::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(137,87,229,0.05) 0%, rgba(22,27,34,0) 100%); pointer-events: none; }
+        .daily-task h2 { border-bottom: none; color: var(--accent-purple); }
+        .tag { display: inline-block; background: rgba(137, 87, 229, 0.2); color: #d2a8ff; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(137, 87, 229, 0.3); }
+
+        /* Grid Layouts (Texts & Papers) */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+        
+        .resource-group { background: rgba(255,255,255,0.02); padding: 18px; border-radius: 12px; border: 1px solid var(--border-subtle); }
+        .resource-group h4 { margin-top: 0; color: var(--text-heading); margin-bottom: 15px; font-size: 1.05rem; display: flex; align-items: center; }
+        .resource-group.p1 h4 { color: var(--accent-blue); }
+        .resource-group.p2 h4 { color: var(--accent-purple); }
+        
+        .resource-link { display: flex; align-items: center; color: var(--text-main); text-decoration: none; padding: 10px 14px; background: var(--bg-main); border-radius: 8px; margin-bottom: 10px; font-size: 0.95rem; transition: all 0.2s ease; border: 1px solid transparent; }
+        .resource-link:last-child { margin-bottom: 0; }
+        .resource-link:hover { background: #1f242c; border-color: var(--border-subtle); color: var(--text-heading); transform: translateX(4px); }
+        .resource-icon { margin-right: 12px; font-size: 1.1rem; opacity: 0.8; }
+
+        /* Past Papers specific styling */
+        .paper-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); }
+        .paper-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .paper-row span { font-weight: 600; color: var(--text-main); font-size: 0.95rem; }
+        .badge-links { display: flex; gap: 8px; }
+        .badge-link { background: var(--bg-main); color: var(--text-heading); text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+        .badge-link:hover { background: #1f242c; border-color: var(--accent-blue); color: var(--accent-blue); }
+        .badge-link.ms:hover { border-color: var(--accent-green); color: var(--accent-green); }
+
+        /* Exam Breakdown Tables */
+        .exam-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.95rem; }
+        .exam-table th, .exam-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-subtle); }
+        .exam-table th { background: rgba(255, 255, 255, 0.05); color: var(--text-heading); font-weight: 600; }
+        .exam-table td strong { color: var(--accent-blue); }
+        .exam-table .p2-header strong { color: var(--accent-purple); }
+        .exam-meta { font-size: 0.9rem; color: #8b949e; background: rgba(255, 255, 255, 0.02); padding: 12px; border-radius: 8px; border: 1px solid var(--border-subtle); margin-bottom: 15px; }
+
+        /* Flashcard Section */
+        .flashcard-container { text-align: center; }
+        .flashcard { background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 40px 20px; border-radius: 12px; margin: 20px 0; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.3s ease; }
+        #fc-term { font-size: 1.6rem; font-weight: 800; color: var(--accent-blue); margin: 0; letter-spacing: -0.5px; }
+        #fc-def { font-size: 1.15rem; color: var(--text-main); margin-top: 20px; display: none; line-height: 1.5; }
+        
+        .fc-btn { background: var(--border-subtle); color: var(--text-heading); border: 1px solid #484f58; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-size: 1rem; margin-top: 10px; font-family: 'Inter', sans-serif; }
+        .fc-btn:hover { background: #484f58; }
+        .fc-btn-primary { background: var(--accent-blue); color: #000; border: none; }
+        .fc-btn-primary:hover { background: #318bf8; }
+
+        /* Alerts & Lists */
+        ul { padding-left: 20px; margin-bottom: 0; }
+        li { margin-bottom: 12px; }
+        li:last-child { margin-bottom: 0; }
+        strong { color: var(--text-heading); }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky-nav">
+        <a href="#mission" class="nav-link">⏱️ Daily Mission</a>
+        <a href="#breakdown" class="nav-link">📊 Exam Breakdown</a>
+        <a href="#flashcards" class="nav-link">🧠 Flashcards</a>
+        <a href="#papers" class="nav-link">📝 Past Papers</a>
+        <a href="#vault" class="nav-link">🎬 Set Texts</a>
+        <a href="#advice" class="nav-link">💡 Exam Advice</a>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>OCR GCSE Media Studies</h1>
+            <p>TV & Promoting Media Revision Portal</p>
+        </div>
+
+        <div class="timer-container" id="timers">
+            <div class="card timer-card">
+                <h3>TV and Promoting Media Mock Exam</h3>
+                <p>Monday 16th November 2026 at 2:20 pm</p>
+                <div class="time-display" id="exam-timer">
+                    <div><span id="days">00</span><span class="time-unit">Days</span></div>
+                    <div><span id="hours">00</span><span class="time-unit">Hrs</span></div>
+                    <div><span id="minutes">00</span><span class="time-unit">Mins</span></div>
+                    <div><span id="seconds">00</span><span class="time-unit">Secs</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card daily-task" id="mission">
+            <h2>⏱️ Today's 20-Minute Mission</h2>
+            <span class="tag" id="mission-tag">Loading...</span>
+            <h3 id="mission-title">Checking the day...</h3>
+            <p id="mission-desc">Your daily task will appear here.</p>
+        </div>
+
+        <div class="card" id="breakdown">
+            <h2>📊 Theoretical Framework Breakdown</h2>
+            <div class="exam-meta">
+                <strong>Exam Duration:</strong> 1 hour 15 minutes<br>
+                <strong>Golden Rule:</strong> 1 mark = 1 minute of writing time (e.g., a 10-mark question means writing for 10 minutes). Time management is critical!
+            </div>
+
+            <h3>Section A: TV</h3>
+            <table class="exam-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Question</th>
+                        <th style="width: 55%;">Skill & Requirement</th>
+                        <th style="width: 15%;">Framework Topic</th>
+                        <th style="width: 15%;">Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Q1</strong></td>
+                        <td>TV: Identify two uses of media language in the extract from one of the four areas: editing, sound, mise-en-scène, camerawork.</td>
+                        <td>Media Language</td>
+                        <td>5 Marks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q2</strong></td>
+                        <td>TV: Analyse how media language is used in the extract to create a particular effect (e.g. threat, suspense, humour).</td>
+                        <td>Media Language</td>
+                        <td>10 Marks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q3</strong></td>
+                        <td>TV: Analyse representations in the extract and relate them to media contexts.</td>
+                        <td>Representation and Media Language</td>
+                        <td>15 Marks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q4</strong></td>
+                        <td>TV: Explain how a media theory of audience can be applied to television.</td>
+                        <td>Audience</td>
+                        <td>5 Marks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q5</strong></td>
+                        <td>TV: Explain how media contexts influence representations in the set text that the extract is not taken from (i.e. if you see Vigil in the exam, the question will be on The Avengers; if you see The Avengers in the exam, the question will be on Vigil).</td>
+                        <td>Representation</td>
+                        <td>10 Marks</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 30px;" class="p2-header"><strong style="color: var(--accent-purple);">Section B: Promoting Media</strong></h3>
+            <table class="exam-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Question</th>
+                        <th style="width: 55%;">Skill & Requirement</th>
+                        <th style="width: 15%;">Framework Topic</th>
+                        <th style="width: 15%;">Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Q6</strong></td>
+                        <td>THE LEGO MOVIE VIDEO GAME: Short knowledge recall question. Requires a specific factual answer.</td>
+                        <td>Media Industries</td>
+                        <td>1 Mark</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q7</strong></td>
+                        <td>THE LEGO MOVIE: Explanation of specific industry processes or strategies.</td>
+                        <td>Media Industries</td>
+                        <td>4 Marks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q8</strong></td>
+                        <td>THE LEGO MOVIE: Extended explanation of how media industries target audiences, supported by a specific set text.</td>
+                        <td>Audiences</td>
+                        <td>10 Marks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q9</strong></td>
+                        <td>THE LEGO MOVIE TRAILER: Analysis of representations within a specific set audio-visual text.</td>
+                        <td>Representation</td>
+                        <td>10 Marks</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card flashcard-container" id="flashcards">
+            <h2>🧠 Quick-Fire Key Terms</h2>
+            <p style="font-size: 0.95rem; color: #8b949e; margin-bottom: 0;">Say what you think the word means out loud before you press reveal!</p>
+            
+            <div class="flashcard">
+                <h3 id="fc-term">Loading term...</h3>
+                <p id="fc-def">Definition will appear here.</p>
+            </div>
+            
+            <div>
+                <button class="fc-btn fc-btn-primary" id="btn-reveal" onclick="revealDefinition()">Reveal Definition</button>
+                <button class="fc-btn" id="btn-next" onclick="nextTerm()" style="display: none;">Next Term ➔</button>
+            </div>
+        </div>
+
+        <div class="card" id="papers">
+            <h2>Test yourself on past papers.</h2>
+            <p style="font-size: 0.95rem; color: #8b949e; margin-top: -5px; margin-bottom: 15px;">Please note that the set texts were changed for the 2025 exam, so the earlier exam papers reference Cuffs, not Vigil, and a different episode of The Avengers. You can still use the questions; just change the name of the episode/show to the one you have studied. Check your answers against the real mark schemes to see how examiners award marks.</p>
+            
+            <div class="resource-group p1">
+                <h4>📺 Paper 1: TV & Promoting Media (J200/01)</h4>
+                
+                <div class="paper-row">
+                    <span>2025 Past Paper</span>
+                    <div class="badge-links">
+                        <a href="pdfs/question-paper-25.pdf" target="_blank" class="badge-link">Paper</a>
+                        <a href="pdfs/ms-25.pdf" target="_blank" class="badge-link ms">Mark Scheme</a>
+                        <a href="pdfs/examiners25.pdf" target="_blank" class="badge-link er">Examiner's Report</a>
+                    </div>
+                </div>
+                <div class="paper-row">
+                    <span>2024 Past Paper</span>
+                    <div class="badge-links">
+                        <a href="pdfs/question-paper-24.pdf" target="_blank" class="badge-link">Paper</a>
+                        <a href="pdfs/ms-24.pdf" target="_blank" class="badge-link ms">Mark Scheme</a>
+                        <a href="pdfs/examiners24.pdf" target="_blank" class="badge-link er">Examiner's Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="vault">
+            <h2>The Specific Case Studies Vault</h2>
+            <p style="font-size: 0.95rem; color: #8b949e; margin-top: -5px; margin-bottom: 5px;">Direct links to the video and print resources you need to learn.</p>
+            
+            <div class="grid-2">
+                <div class="resource-group p1">
+                    <h4>📺 Section A: Television</h4>
+                    
+                    <a href="https://www.bbc.co.uk/iplayer/episode/p09pm8b0/vigil-series-1-episode-1" target="_blank" class="resource-link">
+                        <span class="resource-icon">🚨</span> Vigil: Series 1, Episode 1 (BBC iPlayer)
+                    </a>
+                    <a href="https://highamspark.sharepoint.com/:v:/s/HPS_Subjects_MED/IQAIpumVQBeTTYWoUzkoI8VaASVElao5l7t8QOWnGrjy7-g?e=TuAZnq&referrer=Outlook.Web&referrerScenario=email-linkwithoutembed" target="_blank" class="resource-link">
+                        <span class="resource-icon">🕵️</span> The Avengers: 'The Gravediggers' (SharePoint)
+                    </a>
+                </div>
+
+                <div class="resource-group p2">
+                    <h4>🎬 Section B: Promoting Media (Lego Movie)</h4>
+                    
+                    <a href="https://www.youtube.com/watch?v=fZ_JOBCLF-I" target="_blank" class="resource-link">
+                        <span class="resource-icon">🎬</span> Main Film Trailer
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=HSbYBzUEQlc" target="_blank" class="resource-link">
+                        <span class="resource-icon">📺</span> UK TV Ad Break Takeover
+                    </a>
+                    <a href="pdfs/lego-posters.pdf" target="_blank" class="resource-link">
+                        <span class="resource-icon">🖼️</span> Promotional Print Posters
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="advice">
+            <h2>How to Actually Revise</h2>
+            <ul>
+                <li><strong>Little But Often:</strong> Instead of spending a long time revising in the final few days before the exam, start your revision as soon as possible and revise in short sessions more regularly.</li>
+                <li><strong>Active Revision:</strong> Reading over notes and highlighting is not as useful as testing yourself. Use the flashcards or exam questions on this site to practise the skill of RETRIEVAL - remembering things under pressure.</li>
+                <li><strong>Get to Know Your Texts:</strong> Look at your set texts often, and make notes on them as you do so. Choose whether to focus on MEDIA LANGUAGE or REPRESENTATION, and then note down everything you notice.</li>
+                <li><strong>Be Creative:</strong> Write songs and poems about the topics, make up acronyms (like RISE), record video explainers, and use images and colours in your notes. All these sensory techniques can make it much easier to remember complex concepts!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Accurate Single Exam Countdown ---
+        const targetDate = new Date('2026-11-16T14:20:00+00:00').getTime(); 
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('timers').innerHTML = "<div class='card timer-card' style='border-top-color: var(--accent-green);'><h3 style='color: var(--accent-green); margin-bottom:0;'>Exam Window Concluded / In Progress</h3></div>";
+                clearInterval(timerInterval);
+                return;
+            }
+
+            document.getElementById('days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById('hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }
+        const timerInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- 2. 14-Day Alternating Mission Logic (Paper 1: TV & Promoting Media) ---
+        const dailyTasks = [
+            // WEEK A: TV & Promoting Media
+            { tag: "Media Language", title: "Lego Trailer Breakdown", desc: "Watch the main trailer for 'The Lego Movie'. Spend 15 minutes listing hints or references that make the film look fun for parents as well as children." },
+            { tag: "Representation", title: "1960s Contexts in The Avengers", desc: "Watch 10 minutes of 'The Gravediggers'. Write down 3 ways the characters, costumes, or settings reflect 1960s Britain (think about social class, gender roles, and Cold War spy themes)." },
+            { tag: "Industries", title: "Synergy Challenge", desc: "Spend 20 minutes sketching out how the Lego video game and real toy sets help advertise the film. Why does this help Warner Bros make more money?" },
+            { tag: "Media Language", title: "Tension in Vigil", desc: "Re-watch the opening 10 minutes of 'Vigil'. List how camera angles, low-key lighting, and claustrophobic submarine settings are used to create suspense and threat." },
+            { tag: "Representation", title: "Character Posters", desc: "Look closely at the Lego character posters. Write down how we can tell who is good or bad just by looking at the colours, fonts, and facial expressions." },
+            { tag: "Audiences", title: "Uses & Gratifications Theory", desc: "Revise Blumler and Katz's 4 audience needs (Entertainment, Personal Identity, Social Interaction, Information). Write one clear example of how 'Vigil' or 'The Avengers' meets each need for Q4." },
+            { tag: "Audiences", title: "TV Ad Break Takeover", desc: "Think about why the Lego movie team bought a whole TV ad break to show ads made out of Lego blocks. How does this grab the viewer's attention and target families?" },
+            
+            // WEEK B: TV & Promoting Media
+            { tag: "Representation", title: "Gender & Authority in Vigil", desc: "Spend 20 minutes comparing DCI Amy Silva with the senior Navy officers in 'Vigil'. How does the show reflect modern 2020s attitudes towards women in power?" },
+            { tag: "Media Language", title: "Poster Elements", desc: "Look at the main Lego movie poster. Spend 15 minutes explaining how the layout, camera angle, and action poses show us that the film will be full of adventure." },
+            { tag: "Representation", title: "Steed & Mrs Peel", desc: "In 'The Avengers', how does Emma Peel challenge traditional 1960s stereotypes of women, while John Steed reinforces stereotypes of the upper-class British gentleman?" },
+            { tag: "Industries", title: "Conglomerates & Tent-Pole Films", desc: "Write a short paragraph explaining why a huge media conglomerate like Warner Bros relies on 'tent-pole' films like 'The Lego Movie' to fund other projects and reduce financial risk." },
+            { tag: "Industries", title: "Video Games & Vertical Integration", desc: "Spend 20 minutes revising 'The Lego Movie Video Game'. Who developed it (TT Games), what age rating is it (PEGI 7), and how does releasing it across multiple consoles help reach a wider audience?" },
+            { tag: "Audiences", title: "PSB vs Commercial TV", desc: "Compare how 'Vigil' (BBC1 - a Public Service Broadcaster) and 'The Avengers' (ITV - a Commercial Broadcaster) were scheduled and funded to reach mass prime-time audiences." },
+            { tag: "Media Language", title: "TV Extract Practice (Q1 & Q2)", desc: "Watch a 3-minute clip from 'Vigil' or 'The Avengers'. Pick ONE area (camerawork, editing, sound, or mise-en-scène) and write down 4 specific examples and the effect they create." }
+        ];
+
+        function setDailyMission() {
+            const now = new Date();
+            const firstDayOfYear = new Date(now.getFullYear(), 0, 1);
+            const pastDaysOfYear = (now - firstDayOfYear) / 86400000;
+            const weekNumber = Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+            const isWeekB = weekNumber % 2 === 0;
+            let taskIndex = now.getDay(); 
+            if (isWeekB) taskIndex += 7;
+
+            const mission = dailyTasks[taskIndex % dailyTasks.length];
+            document.getElementById('mission-tag').innerText = mission.tag;
+            document.getElementById('mission-title').innerText = mission.title;
+            document.getElementById('mission-desc').innerText = mission.desc;
+        }
+        setDailyMission();
+
+        // --- 3. Interactive Target Flashcards (Paper 1 Focus & UK Spelling) ---
+        const glossary = [
+            /* Industry Terms */
+            { term: "Conglomerate", def: "A large media company that owns many smaller companies, known as 'subsidiaries' (e.g. Time Warner owning Warner Bros and TT Games)." },
+            { term: "Vertical Integration", def: "When one company owns multiple stages of the production, distribution, and exhibition process (e.g. Warner Bros producing and distributing The Lego Movie and its video game via TT Games)." },
+            { term: "Horizontal Integration", def: "When a media company owns several subsidiaries that operate in the same sector or make similar media products (e.g. Warner Bros owning DC Entertainment, New Line Cinema, and TT Games)." },
+            { term: "Public Service Broadcaster (PSB)", def: "A broadcaster funded by the public (such as the BBC via the licence fee) whose purpose is to inform, educate, and entertain rather than make a commercial profit." },
+            { term: "Commercial Broadcaster", def: "A broadcaster (such as ITV) whose main purpose is to generate profit for its owners and shareholders, mainly through selling advertising slots." },
+            { term: "Tent-Pole Film", def: "A blockbuster film (like The Lego Movie) expected to make huge profits that financially support a studio's riskier, smaller projects." },
+            
+            /* Camerawork & Lighting Terms */
+            { term: "Close-Up Shot", def: "A camera shot that frames a face or object tightly. It highlights facial expressions and emotions, such as fear or suspense in Vigil." },
+            { term: "Establishing Shot", def: "A wide camera shot at the start of a scene that shows the audience where the action is taking place (e.g. an aerial shot of the submarine or naval base)." },
+            { term: "Low-Angle Shot", def: "The camera looks up at a character from below, making them appear powerful, dominant, or threatening (such as Lord Business on his character poster)." },
+            { term: "High-Angle Shot", def: "The camera looks down at a character from above, making them appear small, vulnerable, or trapped." },
+            { term: "Tracking Shot", def: "A shot where the camera physically moves alongside or follows a character through a space, such as following DCI Silva down the narrow submarine corridors." },
+            { term: "High-Key Lighting", def: "Bright, even lighting with very few shadows, often used to create an upbeat or family-friendly mood." },
+            { term: "Low-Key Lighting", def: "Dim lighting with strong contrasts and deep shadows, used to create mystery, danger, or claustrophobia in crime dramas like Vigil." },
+            { term: "Natural Lighting", def: "Lighting that uses or mimics natural daylight to make an outdoor scene feel realistic." },
+            
+            /* Editing Terms */
+            { term: "Jump Cut", def: "An abrupt edit that cuts forward in time within the same framing, making the action feel jarring, disorientating, or urgent." },
+            { term: "Cross-Cutting", def: "Cutting back and forth between two events happening at the same time in different locations (e.g. underwater on HMS Vigil and on land in Scotland) to build tension." },
+            { term: "Fade Out", def: "A gradual transition where the image slowly darkens to black, usually signalling the end of a scene or the passing of time." },
+            { term: "Pace of Editing", def: "How quickly shots are cut together. Fast-paced editing creates excitement and action; slower editing builds atmosphere or tension." },
+
+            /* Core Media & Theory Terms */
+            { term: "Mise-en-scène", def: "A French term meaning 'everything inside the frame'. This includes settings, props, costume, make-up, lighting, and actor positioning (blocking)." },
+            { term: "Synergy", def: "When different products and branches across a conglomerate work together to cross-promote one brand (such as The Lego Movie, the TT Games video game, and Lego construction sets)." },
+            { term: "Demographics", def: "Categorising an audience by factual, measurable statistics such as age, gender, income, and social class." },
+            { term: "Psychographics", def: "Categorising an audience by their attitudes, values, lifestyle choices, and personality traits." },
+            { term: "Cross-Media Convergence", def: "When different media forms and technologies come together on a single digital platform, such as streaming BBC1 television dramas like Vigil on a smartphone via BBC iPlayer." },
+            { term: "Intertextuality", def: "When a media product references or parodies another recognisable media text to create humour or meaning (e.g. Batman and Star Wars characters appearing in The Lego Movie)." },
+            { term: "Star Persona", def: "The recognisable public image or identity of a famous actor (such as Suranne Jones in Vigil or Will Arnett voicing Batman), which helps attract audiences to a TV show or film." },
+            { term: "Target Audience", def: "The specific group of people a media producer designs and markets a product for (such as children and nostalgic parents for The Lego Movie)." },
+            { term: "Anchorage", def: "How written text (like taglines and character names on The Lego Movie posters) 'pins down' the meaning of an image so the audience interprets it as intended." },
+            { term: "Uses and Gratifications Theory", def: "Blumler and Katz's theory that active audiences consume media to fulfil four key needs: Entertainment/Diversion, Personal Identity, Social Interaction, and Information/Surveillance." },
+            { term: "Propp's Narrative Theory", def: "Vladimir Propp's theory that stories are driven by recurring character types—such as the Hero (Emmet/Amy Silva), the Villain (Lord Business), the Helper (Wyldstyle), and the Donor/Mentor (Vitruvius)." }
+        ];
+
+        let currentTermIndex = 0;
+
+        function loadTerm() {
+            currentTermIndex = Math.floor(Math.random() * glossary.length);
+            document.getElementById('fc-term').innerText = glossary[currentTermIndex].term;
+            document.getElementById('fc-def').innerText = glossary[currentTermIndex].def;
+            
+            document.getElementById('fc-def').style.display = 'none';
+            document.getElementById('btn-reveal').style.display = 'inline-block';
+            document.getElementById('btn-next').style.display = 'none';
+        }
+
+        function revealDefinition() {
+            document.getElementById('fc-def').style.display = 'block';
+            document.getElementById('btn-reveal').style.display = 'none';
+            document.getElementById('btn-next').style.display = 'inline-block';
+        }
+
+        function nextTerm() {
+            loadTerm();
+        }
+
+        loadTerm();
+    </script>
+</body>
+</html>
