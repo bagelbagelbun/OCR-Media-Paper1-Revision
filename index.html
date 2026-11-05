@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCR J200 | Media Studies Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;800&display=swap" rel="stylesheet">
+    <title>OCR J200/01 | Paper 1 Revision Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         /* Midnight Theme Variables */
         :root {
@@ -54,16 +54,16 @@
             padding: 15px 20px;
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
         .nav-link {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            padding: 8px 16px;
+            padding: 8px 14px;
             background: var(--bg-card);
             border-radius: 20px;
             border: 1px solid var(--border-subtle);
@@ -122,11 +122,13 @@
         .resource-link:hover { background: #1f242c; border-color: var(--border-subtle); color: var(--text-heading); transform: translateX(4px); }
         .resource-icon { margin-right: 12px; font-size: 1.1rem; opacity: 0.8; }
 
+        .auth-note { font-size: 0.8rem; color: var(--accent-warning); background: var(--bg-warning); border: 1px solid rgba(210, 153, 34, 0.3); padding: 8px 12px; border-radius: 6px; margin-top: 10px; }
+
         /* Past Papers specific styling */
-        .paper-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); }
+        .paper-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 8px; }
         .paper-row:last-child { border-bottom: none; padding-bottom: 0; }
         .paper-row span { font-weight: 600; color: var(--text-main); font-size: 0.95rem; }
-        .badge-links { display: flex; gap: 8px; }
+        .badge-links { display: flex; gap: 8px; flex-wrap: wrap; }
         .badge-link { background: var(--bg-main); color: var(--text-heading); text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border-subtle); transition: all 0.2s; }
         .badge-link:hover { background: #1f242c; border-color: var(--accent-blue); color: var(--accent-blue); }
         .badge-link.ms:hover { border-color: var(--accent-green); color: var(--accent-green); }
@@ -139,9 +141,83 @@
         .exam-table .p2-header strong { color: var(--accent-purple); }
         .exam-meta { font-size: 0.9rem; color: #8b949e; background: rgba(255, 255, 255, 0.02); padding: 12px; border-radius: 8px; border: 1px solid var(--border-subtle); margin-bottom: 15px; }
 
+        /* Practice Timer Widget */
+        .practice-timer-box {
+            margin-top: 25px;
+            padding: 18px;
+            background: rgba(88, 166, 255, 0.05);
+            border: 1px solid rgba(88, 166, 255, 0.25);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .pt-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .pt-btn {
+            background: var(--bg-main);
+            color: var(--text-heading);
+            border: 1px solid var(--border-subtle);
+            padding: 7px 13px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        .pt-btn:hover, .pt-btn.active { background: var(--accent-blue); color: #000; border-color: var(--accent-blue); }
+        .pt-readout { font-size: 1.5rem; font-weight: 800; color: var(--accent-blue); font-variant-numeric: tabular-nums; min-width: 75px; text-align: right; }
+
+        /* Collapsible Writing Frames */
+        details.frame-accordion {
+            margin-top: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        details.frame-accordion summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-heading);
+            font-size: 0.95rem;
+            outline: none;
+        }
+        details.frame-accordion summary:hover { color: var(--accent-blue); }
+        .frame-body {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.9rem;
+        }
+        .formula-pill {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--accent-blue);
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Contexts Grid */
+        .context-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .context-card h4 { margin: 0 0 8px 0; color: var(--accent-blue); font-size: 1rem; }
+        .context-card p { margin: 0 0 8px 0; font-size: 0.88rem; }
+        .context-card p:last-child { margin-bottom: 0; }
+
         /* Flashcard Section */
         .flashcard-container { text-align: center; }
-        .flashcard { background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 40px 20px; border-radius: 12px; margin: 20px 0; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.3s ease; }
+        .fc-meta-bar { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #8b949e; margin-top: 12px; }
+        .flashcard { background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); padding: 40px 20px; border-radius: 12px; margin: 12px 0 20px 0; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.3s ease; }
         #fc-term { font-size: 1.6rem; font-weight: 800; color: var(--accent-blue); margin: 0; letter-spacing: -0.5px; }
         #fc-def { font-size: 1.15rem; color: var(--text-main); margin-top: 20px; display: none; line-height: 1.5; }
         
@@ -149,6 +225,7 @@
         .fc-btn:hover { background: #484f58; }
         .fc-btn-primary { background: var(--accent-blue); color: #000; border: none; }
         .fc-btn-primary:hover { background: #318bf8; }
+        .kbd-hint { font-size: 0.8rem; color: #8b949e; margin-top: 12px; }
 
         /* Alerts & Lists */
         ul { padding-left: 20px; margin-bottom: 0; }
@@ -162,6 +239,7 @@
     <nav class="sticky-nav">
         <a href="#mission" class="nav-link">⏱️ Daily Mission</a>
         <a href="#breakdown" class="nav-link">📊 Exam Breakdown</a>
+        <a href="#contexts" class="nav-link">🌍 Contexts</a>
         <a href="#flashcards" class="nav-link">🧠 Flashcards</a>
         <a href="#papers" class="nav-link">📝 Past Papers</a>
         <a href="#vault" class="nav-link">🎬 Set Texts</a>
@@ -170,8 +248,8 @@
 
     <div class="container">
         <div class="header">
-            <h1>OCR GCSE Media Studies</h1>
-            <p>TV & Promoting Media Revision Portal</p>
+            <h1>OCR GCSE Media Studies (J200/01)</h1>
+            <p>Paper 1: Television & Promoting Media Revision Hub</p>
         </div>
 
         <div class="timer-container" id="timers">
@@ -197,11 +275,11 @@
         <div class="card" id="breakdown">
             <h2>📊 Theoretical Framework Breakdown</h2>
             <div class="exam-meta">
-                <strong>Exam Duration:</strong> 1 hour 15 minutes<br>
-                <strong>Golden Rule:</strong> 1 mark = 1 minute of writing time (e.g., a 10-mark question means writing for 10 minutes). Time management is critical!
+                <strong>Exam Duration:</strong> 1 hour 15 minutes (70 Marks Total)<br>
+                <strong>Golden Rule:</strong> 1 mark = 1 minute of writing time (plus 5 minutes for reading and annotating your TV extract). Time management is critical!
             </div>
 
-            <h3>Section A: TV</h3>
+            <h3>Section A: Television (45 Marks)</h3>
             <table class="exam-table">
                 <thead>
                     <tr>
@@ -214,38 +292,38 @@
                 <tbody>
                     <tr>
                         <td><strong>Q1</strong></td>
-                        <td>TV: Identify two uses of media language in the extract from one of the four areas: editing, sound, mise-en-scène, camerawork.</td>
+                        <td>Identify two uses of media language in the extract from one of the four areas: editing, sound, mise-en-scène, or camerawork.</td>
                         <td>Media Language</td>
                         <td>5 Marks</td>
                     </tr>
                     <tr>
                         <td><strong>Q2</strong></td>
-                        <td>TV: Analyse how media language is used in the extract to create a particular effect (e.g. threat, suspense, humour).</td>
+                        <td>Analyse how media language is used in the extract to create a particular effect (e.g. threat, suspense, humour).</td>
                         <td>Media Language</td>
                         <td>10 Marks</td>
                     </tr>
                     <tr>
                         <td><strong>Q3</strong></td>
-                        <td>TV: Analyse representations in the extract and relate them to media contexts.</td>
-                        <td>Representation and Media Language</td>
+                        <td>Analyse representations in the extract and relate them to media contexts.</td>
+                        <td>Representation & Media Language</td>
                         <td>15 Marks</td>
                     </tr>
                     <tr>
                         <td><strong>Q4</strong></td>
-                        <td>TV: Explain how a media theory of audience can be applied to television.</td>
-                        <td>Audience</td>
+                        <td>Explain how a media theory of audience (Uses & Gratifications) can be applied to television.</td>
+                        <td>Audiences</td>
                         <td>5 Marks</td>
                     </tr>
                     <tr>
                         <td><strong>Q5</strong></td>
-                        <td>TV: Explain how media contexts influence representations in the set text that the extract is not taken from (i.e. if you see Vigil in the exam, the question will be on The Avengers; if you see The Avengers in the exam, the question will be on Vigil).</td>
-                        <td>Representation</td>
+                        <td>Explain how media contexts influence representations in the set text that the extract is <strong>not</strong> taken from (if you see <em>Vigil</em> in the exam, Q5 is on <em>The Avengers</em>, and vice versa).</td>
+                        <td>Representation & Contexts</td>
                         <td>10 Marks</td>
                     </tr>
                 </tbody>
             </table>
 
-            <h3 style="margin-top: 30px;" class="p2-header"><strong style="color: var(--accent-purple);">Section B: Promoting Media</strong></h3>
+            <h3 style="margin-top: 30px;" class="p2-header"><strong style="color: var(--accent-purple);">Section B: Promoting Media (25 Marks)</strong></h3>
             <table class="exam-table">
                 <thead>
                     <tr>
@@ -258,36 +336,125 @@
                 <tbody>
                     <tr>
                         <td><strong>Q6</strong></td>
-                        <td>THE LEGO MOVIE VIDEO GAME: Short knowledge recall question. Requires a specific factual answer.</td>
+                        <td>THE LEGO MOVIE VIDEO GAME: Short knowledge recall question requiring a specific factual answer.</td>
                         <td>Media Industries</td>
                         <td>1 Mark</td>
                     </tr>
                     <tr>
                         <td><strong>Q7</strong></td>
-                        <td>THE LEGO MOVIE: Explanation of specific industry processes or strategies.</td>
+                        <td>THE LEGO MOVIE: Explanation of specific industry processes or strategies (e.g. synergy, vertical/horizontal integration, regulation).</td>
                         <td>Media Industries</td>
                         <td>4 Marks</td>
                     </tr>
                     <tr>
                         <td><strong>Q8</strong></td>
-                        <td>THE LEGO MOVIE: Extended explanation of how media industries target audiences, supported by a specific set text.</td>
+                        <td>THE LEGO MOVIE: Extended explanation of how media industries target audiences, supported by set texts.</td>
                         <td>Audiences</td>
                         <td>10 Marks</td>
                     </tr>
                     <tr>
                         <td><strong>Q9</strong></td>
-                        <td>THE LEGO MOVIE TRAILER: Analysis of representations within a specific set audio-visual text.</td>
-                        <td>Representation</td>
+                        <td>THE LEGO MOVIE (Posters/Trailer): Analysis of representations or media language within specific promotional set texts.</td>
+                        <td>Representation / Media Language</td>
                         <td>10 Marks</td>
                     </tr>
                 </tbody>
             </table>
+
+            <!-- Interactive Timed Question Clock -->
+            <div class="practice-timer-box">
+                <div>
+                    <strong style="color: var(--text-heading); display: block;">⏳ Exam Pace Practice Clock</strong>
+                    <span style="font-size: 0.85rem; color: #8b949e;">Pick a question mark value and test your writing speed:</span>
+                </div>
+                <div class="pt-controls">
+                    <button class="pt-btn" onclick="startPracticeClock(5)">5 Min (5m)</button>
+                    <button class="pt-btn" onclick="startPracticeClock(10)">10 Min (10m)</button>
+                    <button class="pt-btn" onclick="startPracticeClock(15)">15 Min (15m)</button>
+                    <button class="pt-btn" onclick="resetPracticeClock()">Reset</button>
+                </div>
+                <div class="pt-readout" id="pt-display">10:00</div>
+            </div>
+
+            <!-- Collapsible Writing Frames -->
+            <h3 style="margin-top: 28px; margin-bottom: 10px;">✍️ Paragraph Structuring Guides</h3>
+
+            <details class="frame-accordion">
+                <summary>How to answer Q1 (5 Marks) & Q4 (5 Marks)</summary>
+                <div class="frame-body">
+                    <span class="formula-pill">Q1 Formula: Technical Term + Specific Example from Clip + Intended Meaning</span>
+                    <p style="margin-top: 4px;">Write <strong>two clear, separate points</strong>. Do not drift into other areas of media language—stick strictly to the one area named in the question (e.g. only Sound or only Editing).</p>
+                    <span class="formula-pill">Q4 Formula: Need Named + Specific Scene/Feature + How Audience Responds</span>
+                    <p style="margin-top: 4px; margin-bottom: 0;">Name the Blumler & Katz need (<em>Entertainment/Diversion, Personal Identity, Social Interaction, Information/Surveillance</em>) and anchor it to a concrete moment in <em>Vigil</em> or <em>The Avengers</em>.</p>
+                </div>
+            </details>
+
+            <details class="frame-accordion">
+                <summary>How to answer Q2, Q8 & Q9 (10 Marks)</summary>
+                <div class="frame-body">
+                    <span class="formula-pill">10-Mark Rule: 2 to 3 Analytical Paragraphs (What → How → Why)</span>
+                    <p style="margin-top: 4px; margin-bottom: 0;">
+                        <strong>1. What (Point):</strong> Directly answer the question focus.<br>
+                        <strong>2. How (Evidence):</strong> Describe a precise shot, sound, edit, costume, or industry strategy using technical terminology.<br>
+                        <strong>3. Why (Analysis):</strong> Unpack the connotations—what does this signify to the audience or how does it position them to respond?
+                    </p>
+                </div>
+            </details>
+
+            <details class="frame-accordion">
+                <summary>How to answer Q3 (15 Marks) & Q5 (10 Marks) — Integrating Contexts</summary>
+                <div class="frame-body">
+                    <span class="formula-pill">Context Rule: Representation + Media Language Evidence + Historical/Social/Political Link</span>
+                    <p style="margin-top: 4px; margin-bottom: 0;">Never write a standalone history paragraph. Always start with how a character, gender, or group is represented in the scene, prove it with media language, and finish the paragraph by explaining how that representation reflects the era in which it was made (1960s vs 2020s).</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Dedicated Contexts Card -->
+        <div class="card" id="contexts">
+            <h2>🌍 The 4 Media Contexts (Q3 & Q5 Anchor)</h2>
+            <p style="font-size: 0.95rem; color: #8b949e; margin-top: -5px; margin-bottom: 15px;">To reach the top mark bands on Q3 and Q5, link representations directly to these four contexts:</p>
+
+            <div class="grid-2">
+                <div class="context-card">
+                    <h4>👥 Social Context</h4>
+                    <p><strong>Meaning:</strong> Attitudes towards gender roles, social class, ethnicity, and sexuality at the time of production.</p>
+                    <p><strong>1965 (<em>The Avengers</em>):</strong> Second-wave feminism emerging; Emma Peel is intellectually equal and physically capable, yet still sexualised for the male gaze. Rigid British class divide between upper-class Steed and working-class characters.</p>
+                    <p><strong>2021 (<em>Vigil</em>):</strong> Women hold high-ranking authority (DCI Silva, Air Vice-Marshal Robertson) and same-sex relationships (Silva & Kirsten) are normalised, though patriarchal institutional resistance remains in the Navy.</p>
+                </div>
+
+                <div class="context-card">
+                    <h4>🏛️ Political Context</h4>
+                    <p><strong>Meaning:</strong> Government power, national security, nuclear deterrence, and public trust in state institutions.</p>
+                    <p><strong>1965 (<em>The Avengers</em>):</strong> Cold War espionage anxiety; hidden radar bases (RAF Fylingdales parody) reflect fears of Soviet surveillance and nuclear attack, disguised with light-hearted British eccentricity.</p>
+                    <p><strong>2021 (<em>Vigil</em>):</strong> Contemporary debates around the renewal of Britain's Trident nuclear deterrent, Scottish independence tensions, and post-2020 public scepticism toward police and military cover-ups.</p>
+                </div>
+
+                <div class="context-card">
+                    <h4>🕰️ Historical Context</h4>
+                    <p><strong>Meaning:</strong> Specific real-world historical events and technological milestones shaping the text.</p>
+                    <p><strong>1965 (<em>The Avengers</em>):</strong> Post-WWII transition from traditional steam heritage (the eccentric railway hospital) to the 1960s Space Age and modern radar technology.</p>
+                    <p><strong>2021 (<em>Vigil</em>):</strong> Echoes real submarine incidents (such as the <em>Antares</em> fishing trawler sinking) and peace camp protests at HMNB Clyde (Faslane) in Scotland.</p>
+                </div>
+
+                <div class="context-card">
+                    <h4>🎭 Cultural Context</h4>
+                    <p><strong>Meaning:</strong> Media trends, genre conventions, and popular culture expectations of the period.</p>
+                    <p><strong>1965 (<em>The Avengers</em>):</strong> Reflects the 1960s 'Spy-Fi' boom (<em>James Bond</em> popularity) and 'Swinging Sixties' mod fashion, blending cosy British crime tropes with surreal humour.</p>
+                    <p><strong>2021 (<em>Vigil</em>):</strong> Built for the modern high-end 'box-set' streaming era on BBC iPlayer, drawing on gritty Nordic Noir aesthetics, complex anti-heroes, and serialized cliffhangers.</p>
+                </div>
+            </div>
         </div>
 
         <div class="card flashcard-container" id="flashcards">
             <h2>🧠 Quick-Fire Key Terms</h2>
             <p style="font-size: 0.95rem; color: #8b949e; margin-bottom: 0;">Say what you think the word means out loud before you press reveal!</p>
             
+            <div class="fc-meta-bar">
+                <span id="fc-cat-badge" class="tag" style="margin-bottom: 0;">Term</span>
+                <span id="fc-progress">Card 1 of 34</span>
+            </div>
+
             <div class="flashcard">
                 <h3 id="fc-term">Loading term...</h3>
                 <p id="fc-def">Definition will appear here.</p>
@@ -297,11 +464,12 @@
                 <button class="fc-btn fc-btn-primary" id="btn-reveal" onclick="revealDefinition()">Reveal Definition</button>
                 <button class="fc-btn" id="btn-next" onclick="nextTerm()" style="display: none;">Next Term ➔</button>
             </div>
+            <div class="kbd-hint">💡 Tip: On a laptop or keyboard, press <strong>Spacebar</strong> to flip and move to the next card.</div>
         </div>
 
         <div class="card" id="papers">
-            <h2>Test yourself on past papers.</h2>
-            <p style="font-size: 0.95rem; color: #8b949e; margin-top: -5px; margin-bottom: 15px;">Please note that the set texts were changed for the 2025 exam, so the earlier exam papers reference Cuffs, not Vigil, and a different episode of The Avengers. You can still use the questions; just change the name of the episode/show to the one you have studied. Check your answers against the real mark schemes to see how examiners award marks.</p>
+            <h2>📝 Past Papers & Mark Schemes</h2>
+            <p style="font-size: 0.95rem; color: #8b949e; margin-top: -5px; margin-bottom: 15px;">Please note that the set texts were updated for the 2025 exam, so earlier papers reference <em>Cuffs</em> instead of <em>Vigil</em>, and a different episode of <em>The Avengers</em>. You can still practise with those questions—simply substitute the episode you have studied. Check your answers against the real mark schemes to see how examiners award marks.</p>
             
             <div class="resource-group p1">
                 <h4>📺 Paper 1: TV & Promoting Media (J200/01)</h4>
@@ -326,8 +494,8 @@
         </div>
 
         <div class="card" id="vault">
-            <h2>The Specific Case Studies Vault</h2>
-            <p style="font-size: 0.95rem; color: #8b949e; margin-top: -5px; margin-bottom: 5px;">Direct links to the video and print resources you need to learn.</p>
+            <h2>🎬 The Specific Case Studies Vault</h2>
+            <p style="font-size: 0.95rem; color: #8b949e; margin-top: -5px; margin-bottom: 5px;">Direct links to the video and print resources you need to know inside out.</p>
             
             <div class="grid-2">
                 <div class="resource-group p1">
@@ -339,6 +507,9 @@
                     <a href="https://highamspark.sharepoint.com/:v:/s/HPS_Subjects_MED/IQAIpumVQBeTTYWoUzkoI8VaASVElao5l7t8QOWnGrjy7-g?e=TuAZnq&referrer=Outlook.Web&referrerScenario=email-linkwithoutembed" target="_blank" class="resource-link">
                         <span class="resource-icon">🕵️</span> The Avengers: 'The Gravediggers' (SharePoint)
                     </a>
+                    <div class="auth-note">
+                        🔒 <strong>Note:</strong> Sign in with your school Microsoft 365 email & password to watch <em>The Avengers</em> on SharePoint.
+                    </div>
                 </div>
 
                 <div class="resource-group p2">
@@ -358,12 +529,12 @@
         </div>
 
         <div class="card" id="advice">
-            <h2>How to Actually Revise</h2>
+            <h2>💡 How to Actually Revise</h2>
             <ul>
-                <li><strong>Little But Often:</strong> Instead of spending a long time revising in the final few days before the exam, start your revision as soon as possible and revise in short sessions more regularly.</li>
-                <li><strong>Active Revision:</strong> Reading over notes and highlighting is not as useful as testing yourself. Use the flashcards or exam questions on this site to practise the skill of RETRIEVAL - remembering things under pressure.</li>
-                <li><strong>Get to Know Your Texts:</strong> Look at your set texts often, and make notes on them as you do so. Choose whether to focus on MEDIA LANGUAGE or REPRESENTATION, and then note down everything you notice.</li>
-                <li><strong>Be Creative:</strong> Write songs and poems about the topics, make up acronyms (like RISE), record video explainers, and use images and colours in your notes. All these sensory techniques can make it much easier to remember complex concepts!</li>
+                <li><strong>Little But Often:</strong> Instead of cramming in the final few days before the mock, revise in short 20-minute bursts regularly.</li>
+                <li><strong>Active Retrieval:</strong> Reading over notes and highlighting feels comfortable, but doesn't build memory. Use the flashcards and timed past paper questions on this site to practise pulling information from memory under pressure.</li>
+                <li><strong>Interrogate Your Texts:</strong> Re-watch key scenes from <em>Vigil</em> and <em>The Gravediggers</em> with a single lens—do a 3-minute pass looking strictly at Sound, then re-watch looking strictly at Editing or Mise-en-scène.</li>
+                <li><strong>Pair Contexts with Moments:</strong> Don't revise 1960s or 2020s history in isolation. Pair every historical/social fact with a specific shot or character interaction from the episodes.</li>
             </ul>
         </div>
     </div>
@@ -390,7 +561,40 @@
         const timerInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- 2. 14-Day Alternating Mission Logic (Paper 1: TV & Promoting Media) ---
+        // --- 2. Interactive Exam Pace Practice Clock ---
+        let practiceInterval = null;
+        let practiceSecondsRemaining = 600;
+
+        function updatePracticeDisplay() {
+            const m = Math.floor(practiceSecondsRemaining / 60).toString().padStart(2, '0');
+            const s = (practiceSecondsRemaining % 60).toString().padStart(2, '0');
+            const displayEl = document.getElementById('pt-display');
+            displayEl.innerText = `${m}:${s}`;
+            displayEl.style.color = practiceSecondsRemaining === 0 ? 'var(--accent-warning)' : 'var(--accent-blue)';
+        }
+
+        function startPracticeClock(minutes) {
+            clearInterval(practiceInterval);
+            practiceSecondsRemaining = minutes * 60;
+            updatePracticeDisplay();
+            practiceInterval = setInterval(() => {
+                if (practiceSecondsRemaining > 0) {
+                    practiceSecondsRemaining--;
+                    updatePracticeDisplay();
+                } else {
+                    clearInterval(practiceInterval);
+                    document.getElementById('pt-display').innerText = "TIME!";
+                }
+            }, 1000);
+        }
+
+        function resetPracticeClock() {
+            clearInterval(practiceInterval);
+            practiceSecondsRemaining = 600;
+            updatePracticeDisplay();
+        }
+
+        // --- 3. 14-Day Alternating Mission Logic (Paper 1: TV & Promoting Media) ---
         const dailyTasks = [
             // WEEK A: TV & Promoting Media
             { tag: "Media Language", title: "Lego Trailer Breakdown", desc: "Watch the main trailer for 'The Lego Movie'. Spend 15 minutes listing hints or references that make the film look fun for parents as well as children." },
@@ -427,52 +631,78 @@
         }
         setDailyMission();
 
-        // --- 3. Interactive Target Flashcards (Paper 1 Focus & UK Spelling) ---
+        // --- 4. Interactive Target Flashcards (Non-Repeating Shuffle Deck + Sound Terms) ---
         const glossary = [
             /* Industry Terms */
-            { term: "Conglomerate", def: "A large media company that owns many smaller companies, known as 'subsidiaries' (e.g. Time Warner owning Warner Bros and TT Games)." },
-            { term: "Vertical Integration", def: "When one company owns multiple stages of the production, distribution, and exhibition process (e.g. Warner Bros producing and distributing The Lego Movie and its video game via TT Games)." },
-            { term: "Horizontal Integration", def: "When a media company owns several subsidiaries that operate in the same sector or make similar media products (e.g. Warner Bros owning DC Entertainment, New Line Cinema, and TT Games)." },
-            { term: "Public Service Broadcaster (PSB)", def: "A broadcaster funded by the public (such as the BBC via the licence fee) whose purpose is to inform, educate, and entertain rather than make a commercial profit." },
-            { term: "Commercial Broadcaster", def: "A broadcaster (such as ITV) whose main purpose is to generate profit for its owners and shareholders, mainly through selling advertising slots." },
-            { term: "Tent-Pole Film", def: "A blockbuster film (like The Lego Movie) expected to make huge profits that financially support a studio's riskier, smaller projects." },
-            
+            { cat: "Industries", term: "Conglomerate", def: "A large media company that owns many smaller companies, known as 'subsidiaries' (e.g. Time Warner owning Warner Bros and TT Games)." },
+            { cat: "Industries", term: "Vertical Integration", def: "When one company owns multiple stages of the production, distribution, and exhibition process (e.g. Warner Bros producing and distributing The Lego Movie and its video game via TT Games)." },
+            { cat: "Industries", term: "Horizontal Integration", def: "When a media company owns several subsidiaries that operate in the same sector or make similar media products (e.g. Warner Bros owning DC Entertainment, New Line Cinema, and TT Games)." },
+            { cat: "Industries", term: "Public Service Broadcaster (PSB)", def: "A broadcaster funded by the public (such as the BBC via the licence fee) whose remit is to inform, educate, and entertain diverse audiences rather than make a commercial profit." },
+            { cat: "Industries", term: "Commercial Broadcaster", def: "A broadcaster (such as ITV) whose main purpose is to generate profit for its shareholders, mainly through selling advertising slots to reach mass audiences." },
+            { cat: "Industries", term: "Tent-Pole Film", def: "A blockbuster film (like The Lego Movie) expected to make huge profits across multiple markets that financially support a studio's riskier, smaller projects." },
+            { cat: "Industries", term: "PEGI & BBFC Regulation", def: "BBFC regulates UK film age ratings (The Lego Movie was rated U), while PEGI regulates video games based on content suitability (The Lego Movie Videogame was rated PEGI 7 for mild cartoon violence)." },
+
             /* Camerawork & Lighting Terms */
-            { term: "Close-Up Shot", def: "A camera shot that frames a face or object tightly. It highlights facial expressions and emotions, such as fear or suspense in Vigil." },
-            { term: "Establishing Shot", def: "A wide camera shot at the start of a scene that shows the audience where the action is taking place (e.g. an aerial shot of the submarine or naval base)." },
-            { term: "Low-Angle Shot", def: "The camera looks up at a character from below, making them appear powerful, dominant, or threatening (such as Lord Business on his character poster)." },
-            { term: "High-Angle Shot", def: "The camera looks down at a character from above, making them appear small, vulnerable, or trapped." },
-            { term: "Tracking Shot", def: "A shot where the camera physically moves alongside or follows a character through a space, such as following DCI Silva down the narrow submarine corridors." },
-            { term: "High-Key Lighting", def: "Bright, even lighting with very few shadows, often used to create an upbeat or family-friendly mood." },
-            { term: "Low-Key Lighting", def: "Dim lighting with strong contrasts and deep shadows, used to create mystery, danger, or claustrophobia in crime dramas like Vigil." },
-            { term: "Natural Lighting", def: "Lighting that uses or mimics natural daylight to make an outdoor scene feel realistic." },
-            
+            { cat: "Camerawork", term: "Close-Up Shot", def: "A camera shot that frames a face or object tightly. It highlights facial expressions and emotions, such as claustrophobic panic or suspicion in Vigil." },
+            { cat: "Camerawork", term: "Establishing Shot", def: "A wide camera shot at the start of a scene that shows the audience where the action is taking place (e.g. an aerial shot of HMS Vigil or the Scottish coast)." },
+            { cat: "Camerawork", term: "Low-Angle Shot", def: "The camera looks up at a character from below, making them appear powerful, dominant, or threatening (such as Lord Business on his character poster)." },
+            { cat: "Camerawork", term: "High-Angle Shot", def: "The camera looks down at a character from above, making them appear small, vulnerable, or trapped (such as DCI Silva being winched down onto the submarine)." },
+            { cat: "Camerawork", term: "Tracking Shot", def: "A shot where the camera physically moves alongside or follows a character through a space, such as following Silva down the narrow submarine corridors." },
+            { cat: "Mise-en-scène", term: "High-Key Lighting", def: "Bright, even lighting with very few shadows, often used to create an upbeat, vibrant, or family-friendly mood." },
+            { cat: "Mise-en-scène", term: "Low-Key Lighting", def: "Dim lighting with strong contrasts and deep shadows, used to create mystery, danger, or claustrophobia in crime dramas like Vigil." },
+            { cat: "Mise-en-scène", term: "Naturalistic Lighting", def: "Lighting that uses or mimics natural daylight to make an outdoor scene feel realistic and grounded." },
+
+            /* Sound Terms (Q1 & Q2 Focus) */
+            { cat: "Sound", term: "Diegetic Sound", def: "Sound whose source is visible on screen or exists inside the story world (e.g. character dialogue, sonar pings, and blaring submarine alarms in Vigil)." },
+            { cat: "Sound", term: "Non-Diegetic Sound", def: "Sound added in post-production that exists outside the story world and is heard only by the audience (e.g. the tense orchestral score or voiceover narration)." },
+            { cat: "Sound", term: "Sound Bridge", def: "When audio from one scene bleeds across the edit into the next scene (or starts before the visual cut), connecting two locations smoothly." },
+            { cat: "Sound", term: "Contrapuntal Sound", def: "Sound or music that contrasts sharply with the mood of the visuals on screen (e.g. cheerful music playing over a sinister moment) to create irony or unease." },
+            { cat: "Sound", term: "Pleonastic / Exaggerated Sound", def: "Sound effects heightened or emphasised to underline physical action or tension (e.g. heavy metallic hatches slamming shut or booming bass drops in a trailer)." },
+            { cat: "Sound", term: "Ambient Sound", def: "Background atmospheric noises of a location (e.g. the low mechanical hum of the submarine engine room) that build realism and immersion." },
+
             /* Editing Terms */
-            { term: "Jump Cut", def: "An abrupt edit that cuts forward in time within the same framing, making the action feel jarring, disorientating, or urgent." },
-            { term: "Cross-Cutting", def: "Cutting back and forth between two events happening at the same time in different locations (e.g. underwater on HMS Vigil and on land in Scotland) to build tension." },
-            { term: "Fade Out", def: "A gradual transition where the image slowly darkens to black, usually signalling the end of a scene or the passing of time." },
-            { term: "Pace of Editing", def: "How quickly shots are cut together. Fast-paced editing creates excitement and action; slower editing builds atmosphere or tension." },
+            { cat: "Editing", term: "Jump Cut", def: "An abrupt edit that cuts forward in time within the same framing, making the action feel jarring, disorientating, or urgent." },
+            { cat: "Editing", term: "Cross-Cutting (Parallel Editing)", def: "Cutting back and forth between two events happening at the same time in different locations (e.g. underwater on HMS Vigil and on land in Scotland) to build tension." },
+            { cat: "Editing", term: "Shot/Reverse-Shot", def: "An editing pattern that alternates between over-the-shoulder shots of two characters speaking, showing power dynamics during interrogations." },
+            { cat: "Editing", term: "Pace of Editing", def: "How quickly shots are cut together. Fast-paced editing creates urgency, panic, or excitement; slower editing builds atmosphere or suspense." },
 
             /* Core Media & Theory Terms */
-            { term: "Mise-en-scène", def: "A French term meaning 'everything inside the frame'. This includes settings, props, costume, make-up, lighting, and actor positioning (blocking)." },
-            { term: "Synergy", def: "When different products and branches across a conglomerate work together to cross-promote one brand (such as The Lego Movie, the TT Games video game, and Lego construction sets)." },
-            { term: "Demographics", def: "Categorising an audience by factual, measurable statistics such as age, gender, income, and social class." },
-            { term: "Psychographics", def: "Categorising an audience by their attitudes, values, lifestyle choices, and personality traits." },
-            { term: "Cross-Media Convergence", def: "When different media forms and technologies come together on a single digital platform, such as streaming BBC1 television dramas like Vigil on a smartphone via BBC iPlayer." },
-            { term: "Intertextuality", def: "When a media product references or parodies another recognisable media text to create humour or meaning (e.g. Batman and Star Wars characters appearing in The Lego Movie)." },
-            { term: "Star Persona", def: "The recognisable public image or identity of a famous actor (such as Suranne Jones in Vigil or Will Arnett voicing Batman), which helps attract audiences to a TV show or film." },
-            { term: "Target Audience", def: "The specific group of people a media producer designs and markets a product for (such as children and nostalgic parents for The Lego Movie)." },
-            { term: "Anchorage", def: "How written text (like taglines and character names on The Lego Movie posters) 'pins down' the meaning of an image so the audience interprets it as intended." },
-            { term: "Uses and Gratifications Theory", def: "Blumler and Katz's theory that active audiences consume media to fulfil four key needs: Entertainment/Diversion, Personal Identity, Social Interaction, and Information/Surveillance." },
-            { term: "Propp's Narrative Theory", def: "Vladimir Propp's theory that stories are driven by recurring character types—such as the Hero (Emmet/Amy Silva), the Villain (Lord Business), the Helper (Wyldstyle), and the Donor/Mentor (Vitruvius)." }
+            { cat: "Mise-en-scène", term: "Mise-en-scène", def: "A French term meaning 'everything placed within the frame'. Includes settings, props, costume, hair/make-up, lighting, and character positioning (blocking)." },
+            { cat: "Industries", term: "Synergy", def: "When different products and branches across a conglomerate work together to cross-promote one brand (such as The Lego Movie, the TT Games video game, and physical Lego sets)." },
+            { cat: "Audiences", term: "Demographics", def: "Categorising an audience by factual, measurable statistics such as age, gender, income, occupation, and social class (e.g. NRS grades A–E)." },
+            { cat: "Audiences", term: "Psychographics", def: "Categorising an audience by their attitudes, values, lifestyle choices, hobbies, and personality traits." },
+            { cat: "Industries", term: "Cross-Media Convergence", def: "When different media forms and technologies come together on a single digital platform, such as streaming BBC1 television dramas like Vigil on a smartphone via BBC iPlayer." },
+            { cat: "Media Language", term: "Intertextuality", def: "When a media product references or parodies another recognisable media text to create humour or meaning (e.g. Batman, Gandalf, and Star Wars characters appearing in The Lego Movie)." },
+            { cat: "Industries", term: "Star Persona", def: "The recognisable public image or identity of a famous actor (such as Suranne Jones in Vigil or Will Arnett voicing Batman), used to attract a built-in audience." },
+            { cat: "Media Language", term: "Anchorage", def: "How written text (such as taglines and character labels on The Lego Movie posters) 'pins down' the preferred meaning of an image so the audience interprets it as intended." },
+            { cat: "Audiences", term: "Uses and Gratifications Theory", def: "Blumler and Katz's theory that active audiences consume media to fulfil four key needs: Entertainment/Diversion, Personal Identity, Social Interaction, and Information/Surveillance." },
+            { cat: "Media Language", term: "Propp's Narrative Theory", def: "Vladimir Propp's theory that stories are driven by recurring character archetypes—such as the Hero (Emmet/Amy Silva), the Villain (Lord Business), the Helper (Wyldstyle), and the Donor/Mentor (Vitruvius)." }
         ];
 
-        let currentTermIndex = 0;
+        let deck = [];
+        let cardCounter = 0;
+
+        // Fisher-Yates shuffle so students see all cards before any repeats
+        function shuffleDeck() {
+            deck = [...glossary];
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            cardCounter = 0;
+        }
 
         function loadTerm() {
-            currentTermIndex = Math.floor(Math.random() * glossary.length);
-            document.getElementById('fc-term').innerText = glossary[currentTermIndex].term;
-            document.getElementById('fc-def').innerText = glossary[currentTermIndex].def;
+            if (deck.length === 0) {
+                shuffleDeck();
+            }
+            const current = deck.pop();
+            cardCounter++;
+
+            document.getElementById('fc-cat-badge').innerText = current.cat;
+            document.getElementById('fc-progress').innerText = `Card ${cardCounter} of ${glossary.length}`;
+            document.getElementById('fc-term').innerText = current.term;
+            document.getElementById('fc-def').innerText = current.def;
             
             document.getElementById('fc-def').style.display = 'none';
             document.getElementById('btn-reveal').style.display = 'inline-block';
@@ -488,6 +718,22 @@
         function nextTerm() {
             loadTerm();
         }
+
+        // Keyboard accessibility: Spacebar flips or advances flashcard when not typing
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && document.activeElement.tagName !== 'SUMMARY' && document.activeElement.tagName !== 'BUTTON') {
+                const fcSection = document.getElementById('flashcards').getBoundingClientRect();
+                if (fcSection.top < window.innerHeight && fcSection.bottom > 0) {
+                    e.preventDefault();
+                    const revealBtn = document.getElementById('btn-reveal');
+                    if (revealBtn.style.display !== 'none') {
+                        revealDefinition();
+                    } else {
+                        nextTerm();
+                    }
+                }
+            }
+        });
 
         loadTerm();
     </script>
