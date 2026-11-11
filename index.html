@@ -8,7 +8,6 @@
     <style>
         /* Midnight Theme Variables */
         :root {
-            --bg-main: #0d1177;
             --bg-main: #0d1117;
             --bg-card: #161b22;
             --border-subtle: #30363d;
@@ -134,6 +133,22 @@
         .badge-link:hover { background: #1f242c; border-color: var(--accent-blue); color: var(--accent-blue); }
         .badge-link.ms:hover { border-color: var(--accent-green); color: var(--accent-green); }
 
+        /* Grade Boundaries Grid */
+        .gb-container { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border-subtle); scroll-margin-top: 90px; }
+        .gb-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 12px; text-align: center; }
+        @media (max-width: 650px) { .gb-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 400px) { .gb-grid { grid-template-columns: repeat(2, 1fr); } }
+        .gb-box { background: var(--bg-main); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; transition: transform 0.2s ease; }
+        .gb-box:hover { transform: translateY(-2px); border-color: var(--accent-blue); }
+        .gb-box.top-tier { border-top: 3px solid var(--accent-purple); }
+        .gb-box.pass-tier { border-top: 3px solid var(--accent-blue); }
+        .gb-box.foundation-tier { border-top: 3px solid var(--border-subtle); }
+        .gb-grade { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #8b949e; font-weight: 600; margin-bottom: 4px; }
+        .gb-grade strong { font-size: 1.15rem; color: var(--text-heading); display: block; margin-top: 2px; }
+        .gb-marks { font-size: 1.25rem; font-weight: 800; color: var(--accent-blue); margin: 4px 0 2px 0; }
+        .gb-box.top-tier .gb-marks { color: #d2a8ff; }
+        .gb-pct { font-size: 0.75rem; color: #8b949e; font-weight: 600; }
+
         /* Exam Breakdown Tables */
         .exam-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.95rem; }
         .exam-table th, .exam-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-subtle); }
@@ -243,6 +258,7 @@
         <a href="#contexts" class="nav-link">🌍 Contexts</a>
         <a href="#flashcards" class="nav-link">🧠 Flashcards</a>
         <a href="#papers" class="nav-link">📝 Past Papers</a>
+        <a href="#boundaries" class="nav-link">🎯 Grade Boundaries</a>
         <a href="#vault" class="nav-link">🎬 Set Texts</a>
         <a href="#advice" class="nav-link">💡 Exam Advice</a>
     </nav>
@@ -276,7 +292,7 @@
         <div class="card" id="breakdown">
             <h2>📊 Theoretical Framework Breakdown</h2>
             <div class="exam-meta">
-                <strong>Exam Duration:</strong> 1 hour 15 minutes (70 Marks Total)<br>
+                <strong>Exam Duration:</strong> 1 hour 15 minutes (70 Marks Total — <a href="#boundaries" style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">See Grade Boundaries ↓</a>)<br>
                 <strong>Golden Rule:</strong> 1 mark = 1 minute of writing time (plus 5 minutes for reading and annotating your TV extract). Time management is critical!
             </div>
 
@@ -497,6 +513,50 @@
                         <a href="pdfs/question-paper-24.pdf" target="_blank" class="badge-link">Paper</a>
                         <a href="pdfs/ms-24.pdf" target="_blank" class="badge-link ms">Mark Scheme</a>
                         <a href="pdfs/examiners24.pdf" target="_blank" class="badge-link er">Examiner's Report</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grade Boundaries Display -->
+            <div class="gb-container" id="boundaries">
+                <h4 style="margin: 0 0 6px 0; color: var(--text-heading); font-size: 1.05rem;">🎯 Guide Grade Boundaries (Out of 70 Marks)</h4>
+                <p style="font-size: 0.88rem; color: #8b949e; margin: 0;">Use these when marking your practice papers. Remember: gaining just <strong>1 extra mark per question</strong> across the 9 questions adds 9 marks—enough to jump nearly two whole grades!</p>
+                
+                <div class="gb-grid">
+                    <div class="gb-box top-tier">
+                        <span class="gb-grade">Grade <strong>9</strong></span>
+                        <span class="gb-marks">57</span>
+                        <span class="gb-pct">81%</span>
+                    </div>
+                    <div class="gb-box top-tier">
+                        <span class="gb-grade">Grade <strong>8</strong></span>
+                        <span class="gb-marks">54</span>
+                        <span class="gb-pct">77%</span>
+                    </div>
+                    <div class="gb-box top-tier">
+                        <span class="gb-grade">Grade <strong>7</strong></span>
+                        <span class="gb-marks">51</span>
+                        <span class="gb-pct">73%</span>
+                    </div>
+                    <div class="gb-box pass-tier">
+                        <span class="gb-grade">Grade <strong>6</strong></span>
+                        <span class="gb-marks">46</span>
+                        <span class="gb-pct">66%</span>
+                    </div>
+                    <div class="gb-box pass-tier">
+                        <span class="gb-grade">Grade <strong>5</strong></span>
+                        <span class="gb-marks">41</span>
+                        <span class="gb-pct">59%</span>
+                    </div>
+                    <div class="gb-box pass-tier">
+                        <span class="gb-grade">Grade <strong>4</strong></span>
+                        <span class="gb-marks">37</span>
+                        <span class="gb-pct">53%</span>
+                    </div>
+                    <div class="gb-box foundation-tier">
+                        <span class="gb-grade">Grade <strong>3</strong></span>
+                        <span class="gb-marks">28</span>
+                        <span class="gb-pct">40%</span>
                     </div>
                 </div>
             </div>
